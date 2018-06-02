@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     loadList() {
-      this.$http.get("http://localhost:3000/heroes")
+      this.$http.get("/heroes")
         .then(res => {
           this.list = res.data;
         })
@@ -54,7 +54,7 @@ export default {
       if (!confirm("确定删除？")) {
         return;
       }
-      this.$http.delete(`http://localhost:3000/heroes/${id}`)
+      this.$http.delete(`/heroes/${id}`)
         .then(res => {
           console.log(res);
           this.loadList();

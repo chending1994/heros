@@ -28,7 +28,7 @@ export default {
   methods: {
     handleAdd() {
       this.$http
-        .post("http://localhost:3000/heroes", this.formData)
+        .post("/heroes", this.formData)
         .then(res => {
           if (res.status === 201) {
             console.log(res);
