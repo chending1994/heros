@@ -16,50 +16,50 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
-    data () {
-        return {
-            formData: {
-                name: '',
-                gender: ''
-            },
-            id: -1
-        };
+  data() {
+    return {
+      formData: {
+        name: "",
+        gender: ""
+      },
+      id: -1
+    };
+  },
+  created() {
+    //获取当前路由的id
+    this.id = this.$route.params.id;
+    //获取当前信息的数据
+    this.loadData();
+  },
+  methods: {
+    loadData() {
+      this.$http
+        .get(`http://localhost:3000/heroes/${this.id}`)
+        .then(res => {
+          if (res.status === 200) {
+            this.formData = res.data;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
-    created() {
-        //获取当前路由的id
-        this.id = this.$route.params.id;
-        //获取当前信息的数据
-        this.loadData();
-    },
-    methods: {
-        loadData() {
-            axios.get(`http://localhost:3000/heroes/${this.id}`)
-                .then(res=> {
-                    if(res.status === 200) {
-                        this.formData = res.data;
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        },
-        handleEdit() {
-            axios.patch(`http://localhost:3000/heroes/${this.id}`,this.formData)
-                .then(res => {
-                    this.$router.push({
-                        name: 'heroes'
-                    })
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        }
+    handleEdit() {
+      axios
+        .patch(`http://localhost:3000/heroes/${this.id}`, this.formData)
+        .then(res => {
+          this.$router.push({
+            name: "heroes"
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+  }
 };
 </script>
 
 <style>
-
 </style>
