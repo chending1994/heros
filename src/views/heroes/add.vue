@@ -1,13 +1,50 @@
 <template>
-    
+    <div>
+        <h2 class="sub-header">Add Hero</h2>
+        <form>
+          <div class="form-group">
+            <label for="user">姓名</label>
+            <input type="text" class="form-control" id="user" placeholder="请输入姓名" v-model="formdata.name">
+          </div>
+          <div class="form-group">
+            <label for="gender">性别</label>
+            <input type="text" class="form-control" id="gender" placeholder="请输入性别" v-model="formdata.gender">
+          </div>
+          <button type="submit" class="btn btn-success" @click.prevent="handleAdd()">Submit</button>
+        </form>
+    </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-
+  data() {
+    return {
+      formdata: {
+        name: "",
+        gender: ""
+      }
+    };
+  },
+  methods: {
+    handleAdd() {
+      axios
+        .post("http://localhost:3000/heroes", this.formdata)
+        .then(res => {
+          console.log(res);
+          if (res.status === 201) {
+            this.$router.push({
+              name: "heroes"
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
 };
 </script>
 
 <style>
-
 </style>
