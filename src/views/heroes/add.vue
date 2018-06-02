@@ -4,11 +4,11 @@
         <form>
           <div class="form-group">
             <label for="user">姓名</label>
-            <input type="text" class="form-control" id="user" placeholder="请输入姓名" v-model="formdata.name">
+            <input type="text" class="form-control" id="user" placeholder="请输入姓名" v-model="formData.name">
           </div>
           <div class="form-group">
             <label for="gender">性别</label>
-            <input type="text" class="form-control" id="gender" placeholder="请输入性别" v-model="formdata.gender">
+            <input type="text" class="form-control" id="gender" placeholder="请输入性别" v-model="formData.gender">
           </div>
           <button type="submit" class="btn btn-success" @click.prevent="handleAdd()">Submit</button>
         </form>
@@ -20,7 +20,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      formdata: {
+      formData: {
         name: "",
         gender: ""
       }

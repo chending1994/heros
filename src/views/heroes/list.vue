@@ -18,7 +18,8 @@
                   <td>{{ item.name }}</td>
                   <td>{{ item.gender }}</td>
                   <td>
-                    <a href="edit.html">edit</a>
+                    <!-- <a href="javascript:void(0);">edit</a> -->
+                    <router-link :to="{name: 'heroesedit',params: {id: item.id}}">edit</router-link>
                     &nbsp;&nbsp;
                     <a href="javascript:void(0);" @click.prevent="handleDel(item.id)">delete</a>
                   </td>
