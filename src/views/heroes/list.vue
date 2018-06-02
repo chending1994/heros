@@ -20,7 +20,7 @@
                   <td>
                     <a href="edit.html">edit</a>
                     &nbsp;&nbsp;
-                    <a href="javascript:window.confirm('Are you sure?')">delete</a>
+                    <a href="javascript:void(0);" @click.prevent="handleDel(item.id)">delete</a>
                   </td>
                 </tr>
               </tbody>
@@ -39,14 +39,33 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get("http://localhost:3000/heroes")
-      .then(res => {
-        this.list = res.data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.loadList();
+  },
+  methods: {
+    loadList() {
+      axios
+        .get("http://localhost:3000/heroes")
+        .then(res => {
+          this.list = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    handleDel(id) {
+      if (!confirm("确定删除？")) {
+        return;
+      }
+      axios
+        .delete(`http://localhost:3000/heroes/${id}`)
+        .then(res => {
+          console.log(res);
+          this.loadList();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 };
 </script>
