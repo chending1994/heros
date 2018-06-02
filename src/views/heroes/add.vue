@@ -3,14 +3,14 @@
         <h2 class="sub-header">Add Hero</h2>
         <form>
           <div class="form-group">
-            <label for="user">姓名</label>
-            <input type="text" class="form-control" id="user" placeholder="请输入姓名" v-model="formData.name">
+            <label for="name">姓名</label>
+            <input type="text" class="form-control" id="name" placeholder="请输入姓名" v-model="formData.name">
           </div>
           <div class="form-group">
             <label for="gender">性别</label>
             <input type="text" class="form-control" id="gender" placeholder="请输入性别" v-model="formData.gender">
           </div>
-          <button type="submit" class="btn btn-success" @click.prevent="handleAdd()">Submit</button>
+          <button type="submit" class="btn btn-success" @click.prevent="handleAdd">Submit</button>
         </form>
     </div>
 </template>
@@ -29,10 +29,10 @@ export default {
   methods: {
     handleAdd() {
       axios
-        .post("http://localhost:3000/heroes", this.formdata)
+        .post("http://localhost:3000/heroes", this.formData)
         .then(res => {
-          console.log(res);
           if (res.status === 201) {
+              console.log(res);
             this.$router.push({
               name: "heroes"
             });
