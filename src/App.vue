@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 头部区域 -->
+    <!-- 头部 -->
     <my-header></my-header>
       <div class="container-fluid">
         <div class="row">
